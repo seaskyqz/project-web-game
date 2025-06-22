@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
+
   <div class="webpage">
     <nav>
       <div class="container">
@@ -23,9 +24,6 @@
             <li><a href="contact.html" class="header__link">Contact Us</a></li>
             <li><a href="register.html" class="header__link signin">SIGN IN</a></li>
           </ul>
-          <div class="menu__btn">
-            <div class="hamburger__menu"></div>
-          </div>
         </div>
       </div>
     </nav>
@@ -38,6 +36,14 @@
         </div>
       </section>
 
+      <!-- ช่องค้นหาสินค้า -->
+      <section class="controls container mt-4">
+        <label for="searchInput">ค้นหาสินค้า:</label>
+        <input type="text" id="searchInput" placeholder="พิมพ์ชื่อสินค้าที่ต้องการค้นหา..." />
+        <button id="searchBtn">ค้นหา</button>
+      </section>
+
+      <!-- หมวดหมู่สินค้า -->
       <section class="shop-controls container mt-4">
         <label for="categorySelect">เลือกหมวดหมู่:</label>
         <select id="categorySelect" class="form-select mb-3" style="width: 200px;">
@@ -48,10 +54,24 @@
         </select>
       </section>
 
+      <!-- แสดงสินค้าจาก API -->
       <section class="product-list container">
         <div id="productList" class="row">
           <!-- สินค้าจากฐานข้อมูลจะแสดงตรงนี้ -->
         </div>
+      </section>
+
+      <!-- ฟอร์มเพิ่มสินค้า -->
+      <section class="container mt-4">
+        <h3>เพิ่มสินค้าใหม่</h3>
+        <form id="addProductForm">
+          <input type="text" id="name" placeholder="ชื่อสินค้า" required />
+          <input type="text" id="description" placeholder="คำอธิบาย" required />
+          <input type="number" id="price" placeholder="ราคา" required />
+          <input type="text" id="category" placeholder="หมวดหมู่" required />
+          <input type="text" id="image" placeholder="URL รูปภาพ" required />
+          <button type="submit">เพิ่มสินค้า</button>
+        </form>
       </section>
     </main>
 

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin - Manage Products</title>
+  <link rel="stylesheet" href="styles/admin.css" />
+</head>
+<body>
+
+  <h2>จัดการสินค้า</h2>
+  
+  <!-- ฟอร์มเพิ่มสินค้า -->
+  <h3>เพิ่มสินค้าใหม่</h3>
+  <form id="addProductForm">
+    <input type="text" id="name" placeholder="ชื่อสินค้า" required />
+    <input type="text" id="description" placeholder="คำอธิบาย" required />
+    <input type="number" id="price" placeholder="ราคา" required />
+    <input type="text" id="category" placeholder="หมวดหมู่" required />
+    <input type="text" id="image" placeholder="URL รูปภาพ" required />
+    <button type="submit">เพิ่มสินค้า</button>
+  </form>
+
+  <hr>
+
+  <!-- ฟอร์มแก้ไขสินค้า -->
+  <h3>แก้ไขสินค้า</h3>
+  <form id="editProductForm">
+    <input type="number" id="editId" placeholder="ID สินค้า" required />
+    <input type="text" id="editName" placeholder="ชื่อสินค้า" required />
+    <input type="text" id="editDescription" placeholder="คำอธิบาย" required />
+    <input type="number" id="editPrice" placeholder="ราคา" required />
+    <input type="text" id="editCategory" placeholder="หมวดหมู่" required />
+    <input type="text" id="editImage" placeholder="URL รูปภาพ" required />
+    <button type="submit">แก้ไขสินค้า</button>
+  </form>
+
+  <hr>
+
+  <!-- ฟอร์มลบสินค้า -->
+  <h3>ลบสินค้า</h3>
+  <form id="deleteProductForm">
+    <input type="number" id="deleteId" placeholder="ID สินค้า" required />
+    <button type="submit">ลบสินค้า</button>
+  </form>
+  <script src="js/admin.js"></script>
+</body>
+</html>
