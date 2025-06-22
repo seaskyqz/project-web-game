@@ -4,44 +4,15 @@ const cors = require('cors');
 const app = express();
 const PORT = 3000;
 
-app.use(cors());
+// ใช้ JSON middleware
 app.use(express.json());
-app.use(express.static('public')); // ถ้าใช้ public folder
+app.use(cors()); // สำหรับการเข้าถึง API จาก frontend
+app.use(express.static(__dirname + '/public')); // ใช้ middleware เพื่อให้บริการไฟล์สถิติ
 
+// เชื่อมต่อกับฐานข้อมูล SQLite
 const db = new sqlite3.Database('./Database/database.db');
 
-// ✅ ดึงสินค้าทั้งหมด
-app.get('/api/products', (req, res) => {
-  db.all('SELECT * FROM products', [], (err, rows) => {
-    if (err) return res.status(500).json({ error: err.message });
-    res.json(rows);
-  });
-});
-
-// ✅ ดึงสินค้าตามหมวดหมู่
-app.get('/api/products/category/:category', (req, res) => {
-  const { category } = req.params;
-  db.all('SELECT * FROM products WHERE category = ?', [category], (err, rows) => {
-    if (err) return res.status(500).json({ error: err.message });
-    res.json(rows);
-  });
-});
-
-app.listen(PORT, () => {
-  console.log(`🚀 Server running at http://localhost:${PORT}`);
-});
-// การค้นหาสินค้าจากคำค้น
-app.get('/api/products/search', (req, res) => {
-  const { search } = req.query;  // รับค่า search จาก URL
-  const query = `SELECT * FROM products WHERE name LIKE ? OR description LIKE ?`;
-  
-  // ค้นหาจากชื่อหรือคำอธิบาย
-  db.all(query, [`%${search}%`, `%${search}%`], (err, rows) => {
-    if (err) return res.status(500).json({ error: err.message });
-    res.json(rows);
-  });
-});
-// เพิ่มสินค้า
+// --------------- API สำหรับเพิ่มสินค้า ---------------
 app.post('/api/products', (req, res) => {
   const { name, description, price, category, image } = req.body;
   const query = `INSERT INTO products (name, description, price, category, image) VALUES (?, ?, ?, ?, ?)`;
@@ -52,7 +23,7 @@ app.post('/api/products', (req, res) => {
   });
 });
 
-// แก้ไขสินค้า
+// --------------- API สำหรับแก้ไขสินค้า ---------------
 app.put('/api/products/:id', (req, res) => {
   const { id } = req.params;
   const { name, description, price, category, image } = req.body;
@@ -64,7 +35,7 @@ app.put('/api/products/:id', (req, res) => {
   });
 });
 
-// ลบสินค้า
+// --------------- API สำหรับลบสินค้า ---------------
 app.delete('/api/products/:id', (req, res) => {
   const { id } = req.params;
   const query = `DELETE FROM products WHERE id = ?`;
@@ -75,4 +46,47 @@ app.delete('/api/products/:id', (req, res) => {
   });
 });
 
+// --------------- API สำหรับดึงข้อมูลสินค้าทั้งหมด ---------------
+app.get('/api/products', (req, res) => {
+  db.all('SELECT * FROM products', [], (err, rows) => {
+    if (err) return res.status(500).json({ error: err.message });
+    res.json(rows);
+  });
+});
 
+// --------------- API สำหรับค้นหาสินค้าตามชื่อ ---------------
+app.get('/api/products/search', (req, res) => {
+  const { search } = req.query;
+  const query = `SELECT * FROM products WHERE name LIKE ? OR description LIKE ?`;
+
+  db.all(query, [`%${search}%`, `%${search}%`], (err, rows) => {
+    if (err) return res.status(500).json({ error: err.message });
+    res.json(rows);
+  });
+});
+
+// --------------- API สำหรับดึงสินค้าตามหมวดหมู่ ---------------
+app.get('/api/products/category/:category', (req, res) => {
+  const { category } = req.params;
+  db.all('SELECT * FROM products WHERE category = ?', [category], (err, rows) => {
+    if (err) return res.status(500).json({ error: err.message });
+    res.json(rows);
+  });
+});
+
+// --------------- API สำหรับดึงข้อมูลสินค้าตาม ID ---------------
+app.get('/api/products/:id', (req, res) => {
+  const { id } = req.params;
+  const query = `SELECT * FROM products WHERE id = ?`;
+
+  db.get(query, [id], (err, row) => {
+    if (err) return res.status(500).json({ error: err.message });
+    if (!row) return res.status(404).json({ message: 'Product not found' });
+    res.json(row);  // ส่งข้อมูลสินค้าเฉพาะตัวที่ต้องการแก้ไข
+  });
+});
+
+// เริ่มต้น server
+app.listen(PORT, () => {
+  console.log(`🚀 Server running at http://localhost:${PORT}`);
+});

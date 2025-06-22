@@ -23,6 +23,29 @@
 
   <hr>
 
+  <!-- ฟอร์มแก้ไขสินค้า -->
+  <h3>แก้ไขสินค้า</h3>
+  <form id="editProductForm">
+    <input type="number" id="editId" placeholder="ID สินค้า" readonly required />
+    <input type="text" id="editName" placeholder="ชื่อสินค้า" required />
+    <input type="text" id="editDescription" placeholder="คำอธิบาย" required />
+    <input type="number" id="editPrice" placeholder="ราคา" required />
+    <input type="text" id="editCategory" placeholder="หมวดหมู่" required />
+    <input type="text" id="editImage" placeholder="URL รูปภาพ" required />
+    <button type="submit">แก้ไขสินค้า</button>
+  </form>
+
+  <hr>
+
+  <!-- ฟอร์มลบสินค้า -->
+  <h3>ลบสินค้า</h3>
+  <form id="deleteProductForm">
+    <input type="number" id="deleteId" placeholder="ID สินค้า" required />
+    <button type="submit">ลบสินค้า</button>
+  </form>
+
+  <hr>
+
   <!-- แสดงรายการสินค้าที่เพิ่มแล้ว -->
   <h3>รายการสินค้า</h3>
   <div id="productList" class="row">
