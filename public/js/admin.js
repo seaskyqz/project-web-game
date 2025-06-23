@@ -71,6 +71,7 @@ window.addEventListener('DOMContentLoaded', function () {
 
   // โหลดสินค้าทันทีเมื่อหน้าเพจโหลด
   loadProducts();
+  loadCategories(); // โหลดหมวดหมู่ที่มีในระบบ
 });
 
 // ฟังก์ชันโหลดสินค้า
@@ -126,4 +127,27 @@ function populateEditForm(id) {
 // ฟังก์ชันเติมข้อมูลในฟอร์มลบ
 function populateDeleteForm(id) {
   document.getElementById('deleteId').value = id;
+}
+
+// ฟังก์ชันโหลดหมวดหมู่จาก backend
+function loadCategories() {
+  fetch('http://localhost:3000/api/categories')
+    .then(res => res.json())
+    .then(categories => {
+      const editCategorySelect = document.getElementById('editCategory');
+      const addCategorySelect = document.getElementById('category');
+      
+      // ล้าง dropdown เก่า
+      editCategorySelect.innerHTML = '<option value="">เลือกหมวดหมู่</option>';
+      addCategorySelect.innerHTML = '<option value="">เลือกหมวดหมู่</option>';
+      
+      // เพิ่มหมวดหมู่ที่มีอยู่แล้ว
+      categories.forEach(category => {
+        editCategorySelect.innerHTML += `<option value="${category.name}">${category.name}</option>`;
+        addCategorySelect.innerHTML += `<option value="${category.name}">${category.name}</option>`;
+      });
+    })
+    .catch(err => {
+      console.error('Error loading categories:', err);
+    });
 }
