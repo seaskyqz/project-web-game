@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home - Lugx gaming website</title>
+  <link rel="stylesheet" href="styles/home.css">
+  <link rel="icon" type="image/x-icon" href="images/favicon.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+
+<body>
+
+  <div class="preloader">
+    <div class="three__dot">
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+    </div>
+    <div class="single__dot">
+      <span class="dot"></span>
+    </div>
+  </div>
+
+  <div class="webpage hidden">
+    <nav>
+      <div class="container">
+        <div class="nav__bar">
+          <div class="logo">
+            <img src="images/logo.png" alt="">
+          </div>
+
+          <ul class="header__list">
+            <li class="list__items">
+              <a href="#" class="header__link active">Home</a>
+            </li>
+
+            <li class="list__items">
+              <a href="ourshop.html" class="header__link">Our Shop</a>
+            </li>
+
+            <li class="list__items">
+              <a href="details.html" class="header__link">Product Details</a>
+            </li>
+
+              <!-- ตะกร้าแสดงจำนวนสินค้า -->
+              <a href="cartout.html">
+              <div class="image-container">
+                <link rel="stylesheet" href="number-cart.css">
+                <img src="images/grocery-store.png" alt="รูปภาพหลัก">
+                <div class="overlay-text">
+                  <ul id="cart-items"></ul>
+                  <span id="total-number">0</span>
+                </div>
+              </div>
+
+              </a>
+
+          </ul>
+          <div class="menu__btn">
+            <div class="hamburger__menu"></div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <main class="main">
+      <section class="main__banner-sect">
+        <div class="container">
+          <div class="main__banner">
+            <div class="main__banner-content">
+              <div class="content__wraper">
+                <h2 class="main__banner-littletitle">WELCOME TO LUGX</h2>
+                <h1 class="main__banner-largtitle">BEST GAMING SITE EVER!</h1>
+                <p class="main__banner-text">LUGX Gaming is free Bootstrap 5 HTML CSS website template
+                  for your gaming websites. You can download and use this layout for commercial
+                  purposes. Please tell your friends about TemplateMo.</p>
+              </div>
+              <div class="main__banner-inp-container">
+                <input type="text" name="" id="" placeholder="Type something...">
+                <button>Search Now</button>
+              </div>
+            </div>
+
+            <div class="main__banner-img">
+              <div class="right__img">
+                <span class="price"> $22 </span>
+                <img src="images/banner-image.jpg" alt="">
+                <span class="offer"> - 40 %</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="feature__sect">
+        <div class="container">
+          <div class="features">
+            <div class="feature__item">
+              <div class="feature__image">
+                <img src="images/featured-01.png" alt="">
+              </div>
+              <h3>FREE STORAGE</h3>
+            </div>
+            <div class="feature__item">
+              <div class="feature__image">
+                <img src="images/featured-02.png" alt="">
+              </div>
+              <h3>USER MORE</h3>
+            </div>
+            <div class="feature__item">
+              <div class="feature__image">
+                <img src="images/featured-03.png" alt="">
+              </div>
+              <h3>REPLY READY</h3>
+            </div>
+            <div class="feature__item">
+              <div class="feature__image">
+                <img src="images/featured-04.png" alt="">
+              </div>
+              <h3>EASY LAYOUT</h3>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="trendinggame__sect">
+        <div class="container">
+          <h4 class="section__littletitle">ALL GAMES</h4>
+          <div class="trendgame__top-sect">
+            <h2 class="section__largtitle">All Games</h2>
+            <a href="ourshop.html" class="trendgame__link">VIEW ALL</a>
+          </div>
+
+          <div class="trendgames" id="productList">
+            <!-- สินค้าจะแสดงตรงนี้ -->
+
+             <div>
+              <!-- ตย.แสดงจำนวนสินค้าตรงตะกร้า -->
+              <h3>รายการสินค้า</h3>
+                <div>
+                  <p>สินค้า A - 100 บาท <button onclick="addToCart('สินค้า A', 1)">เพิ่ม</button></p>
+                  <p>สินค้า B - 150 บาท <button onclick="addToCart('สินค้า B', 1)">เพิ่ม</button></p>
+                  <p>สินค้า C - 200 บาท <button onclick="addToCart('สินค้า C', 1)">เพิ่ม</button></p>
+                </div>
+                
+                <script src="update-number.js"></script>
+
+             </div>
+
+          </div>
+
+          <!-- ปุ่มเลื่อน -->
+          <div class="pagination">
+            <button id="prevBtn">Previous</button>
+            <button id="nextBtn">Next</button>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="copy__right">
+          <h3 class="webdeveloper">Website developer : <a href="#">Your Name</a></h3>
+          <h3 class="disignby">Design by : <a href="#">TemplateMo</a></h3>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="js/home.js"></script>
+  <script src="js/catalog.js"></script> <!-- เพิ่ม script สำหรับ catalog.js -->
+  <script>
+    let currentPage = 1;
+    const itemsPerPage = 4; // จำนวนสินค้าแสดงต่อหน้า
+
+    // ฟังก์ชันโหลดสินค้า
+    function loadProducts(page = 1) {
+      fetch('http://localhost:3000/api/products')
+        .then(res => res.json())
+        .then(products => {
+          const container = document.getElementById('productList');
+          container.innerHTML = ''; // เคลียร์ข้อมูลเก่า
+
+          const startIndex = (page - 1) * itemsPerPage;
+          const endIndex = page * itemsPerPage;
+          const productsToShow = products.slice(startIndex, endIndex);
+
+          if (productsToShow.length === 0) {
+            container.innerHTML = `<p>ไม่พบสินค้าตามที่ค้นหา</p>`;
+            return;
+          }
+
+          productsToShow.forEach(p => {
+            container.innerHTML += `
+              <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card h-100">
+                  <img src="${p.image}" class="card-img-top" alt="${p.name}">
+                  <div class="card-body">
+                    <h5 class="card-title">${p.name}</h5>
+                    <p class="card-text">${p.description}</p>
+                    <p class="card-text text-danger"><strong>${p.price} บาท</strong></p>
+                  </div>
+                </div>
+              </div>
+            `;
+          });
+
+          // เช็คว่าให้ปุ่ม "Next" และ "Previous" ทำงานได้หรือไม่
+          document.getElementById('prevBtn').disabled = page === 1;
+          document.getElementById('nextBtn').disabled = endIndex >= products.length;
+        })
+        .catch(err => {
+          console.error('เกิดข้อผิดพลาดในการโหลดสินค้า:', err);
+        });
+    }
+
+    // ฟังก์ชันหน้า "Next"
+    document.getElementById('nextBtn').addEventListener('click', function () {
+      currentPage++;
+      loadProducts(currentPage);
+    });
+
+    // ฟังก์ชันหน้า "Previous"
+    document.getElementById('prevBtn').addEventListener('click', function () {
+      currentPage--;
+      loadProducts(currentPage);
+    });
+
+    // เรียกใช้ฟังก์ชันโหลดสินค้าทันทีเมื่อหน้าเว็บโหลด
+    document.addEventListener('DOMContentLoaded', function () {
+      loadProducts(currentPage);
+    });
+  </script>
+</body>
+
+</html>
