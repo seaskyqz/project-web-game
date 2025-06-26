@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Index - Lugx gaming website</title>
+  <title>Home - Lugx gaming website</title>
   <link rel="stylesheet" href="styles/Home.css">
   <link rel="icon" type="image/x-icon" href="images/favicon.png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
@@ -28,17 +28,33 @@
       <div class="container">
         <div class="nav__bar">
           <div class="logo">
-            <img src="images/logo.png" alt="">
+            <img src="images/logo.png" alt="Logo">
           </div>
 
           <ul class="header__list">
             <li class="list__items">
-              <a href="Index.html" class="header__link active">Home</a>
+              <a href="#" class="header__link active">Home</a>
             </li>
 
             <li class="list__items">
-              <a href="login.html" class="header__link signin">SIGN IN</a>
+              <a href="ourshop.html" class="header__link">Our Shop</a>
             </li>
+
+            <li class="list__items">
+              <a href="ProductDetails.html" class="header__link">Product Details</a>
+            </li>
+
+            <!-- ตะกร้าแสดงจำนวนสินค้า -->
+            <a href="CartOut.html">
+            <div class="image-container">
+              <img src="images/grocery-store.png" alt="ตะกร้าแสดงจำนวนสินค้า">
+              <div class="overlay-text">
+                <ul id="cart-items"></ul>
+                <div class="cart-counter" id="cart-count">0</div>
+              </div>
+            </div>
+            </a>
+
           </ul>
           <div class="menu__btn">
             <div class="hamburger__menu"></div>
@@ -112,10 +128,15 @@
           <h4 class="section__littletitle">ALL GAMES</h4>
           <div class="trendgame__top-sect">
             <h2 class="section__largtitle">All Games</h2>
+          <a href="ourshop.html" class="trendgame__link">VIEW ALL</a>
           </div>
 
           <div class="trendgames" id="productList">
             <!-- สินค้าจะแสดงตรงนี้ -->
+            <!-- สินค้าตัวอย่าง -->
+             <h2>สินค้า</h2>
+              <p>สินค้า A - 100 บาท <button onclick="addToCart('สินค้า A', 100)">เพิ่มในตะกร้า</button></p>
+              <p>สินค้า B - 150 บาท <button onclick="addToCart('สินค้า B', 150)">เพิ่มในตะกร้า</button></p>
           </div>
 
           <!-- ปุ่มเลื่อน -->
@@ -140,6 +161,8 @@
     </footer>
   </div>
 
+  <script src="UpdateCartCounts.js"></script>
+  
   <script src="js/home.js"></script>
   <script src="js/catalog.js"></script> <!-- เพิ่ม script สำหรับ catalog.js -->
   <script>
